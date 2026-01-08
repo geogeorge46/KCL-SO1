@@ -1,0 +1,103 @@
+:root{
+  --bg-light: #ffffff;
+  --muted:#4b5563; /* slate for muted text */
+  --neon: #16a34a; /* neon green accent (darker for light bg) */
+  --gold: #f6c85f; /* gold for winner */
+  --glass: rgba(255,255,255,0.7);
+  --glass-2: rgba(255,255,255,0.6);
+  --card-surface: rgba(255,255,255,0.72);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  color:#0b1721; /* dark text for light surfaces */
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  /* keep stadium image but lighten with white glass overlay */
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.72) 0%, rgba(255,255,255,0.76) 60%),
+    url('https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Zm9vdGJhbGx8ZW58MHx8MHx8fDA%3D') center/cover no-repeat fixed;
+  background-blend-mode:screen;
+  min-height:100vh;
+}
+.container{max-width:1100px;margin:0 auto;padding:24px}
+.site-header{position:sticky;top:0;z-index:40;padding:8px 0;backdrop-filter:blur(10px);background:linear-gradient(90deg, rgba(255,255,255,0.88), rgba(255,255,255,0.84));border-bottom:1px solid rgba(16,24,32,0.06)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+.brand{font-weight:800;font-size:1.15rem;color:#071216;letter-spacing:0.4px}
+.accent{color:var(--neon)}
+.nav a{color:var(--muted);text-decoration:none;margin-left:18px;opacity:0.95}
+.nav a:hover{color:#0b1721;opacity:1;text-decoration:underline}
+.hero{padding:28px 0;text-align:left}
+.hero{
+  display:flex;align-items:center;justify-content:center;flex-direction:column;
+  padding:48px 12px; 
+  margin:8px 0 18px;
+  border-radius:14px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.84), rgba(255,255,255,0.9));
+  border:1px solid rgba(16,24,32,0.06);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 12px 40px rgba(16,24,32,0.06);
+  text-align:center;
+}
+.hero-title{margin:0;font-size:2.6rem;font-weight:800;color:#071216;font-family:'Poppins', Inter, sans-serif;letter-spacing:0.6px}
+.hero-sub{display:none}
+
+/* hero animation */
+.hero-animate{opacity:0;transform:translateY(18px) scale(0.98);animation:heroIn .9s cubic-bezier(.2,.9,.2,1) forwards}
+@keyframes heroIn{to{opacity:1;transform:translateY(0) scale(1)}}
+.hero-title::after{content:'';display:block;margin:14px auto 0;height:4px;width:72px;border-radius:4px;background:linear-gradient(90deg,var(--neon), #9adf7a);box-shadow:0 6px 18px rgba(22,163,74,0.12)}
+.card{background:var(--card-surface);border:1px solid rgba(16,24,32,0.06);border-radius:12px;padding:16px;margin:18px 0;box-shadow:0 10px 30px rgba(16,24,32,0.06);overflow:hidden;backdrop-filter:blur(8px)}
+.card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.card-head h2{margin:0;font-size:1.05rem}
+.controls{display:flex;gap:8px;align-items:center}
+.search{background:linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.92));border:1px solid rgba(16,24,32,0.06);color:#0b1721;padding:8px 12px;border-radius:10px;outline:none;min-width:200px;backdrop-filter:blur(2px)}
+.search::placeholder{color:rgba(11,23,33,0.45)}
+.search:focus{border-color:var(--neon);color:#071216;box-shadow:0 6px 24px rgba(22,163,74,0.06)}
+.card-body{position:relative}
+.table-wrap{overflow:auto;border-radius:8px}
+.styled-table{width:100%;border-collapse:collapse;min-width:420px}
+.styled-table td,.styled-table th{padding:12px 14px;border-bottom:1px solid rgba(16,24,32,0.04);color:#071216}
+.styled-table tr{transition:transform .18s ease,background .18s ease,box-shadow .18s ease}
+.styled-table tr:hover{transform:translateY(-4px);background:linear-gradient(90deg, rgba(240,240,242,0.6), rgba(240,240,242,0.7));box-shadow:0 6px 18px rgba(16,24,32,0.06)}
+.styled-table th{position:sticky;top:0;background:linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.92));backdrop-filter:blur(6px);text-align:left;font-weight:700;color:#071216;border-bottom:1px solid rgba(16,24,32,0.06)}
+.styled-table tr:nth-child(even){background:rgba(255,255,255,0.02)}
+
+/* club name highlight */
+.club-name{color:var(--neon);font-weight:700}
+
+/* first-ranked club (visible on top/ranked row) */
+/* applies when the row is the first child or marked as .winner */
+.styled-table tbody tr:first-child td.club-name,
+.styled-table tr.winner td.club-name{
+  color: var(--gold);
+  font-weight: 800;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.22);
+}
+
+/* explicit top-club marker (used when club cell isn't the first column) */
+.styled-table td.top-club{
+  color: var(--gold) !important;
+  font-weight: 800;
+}
+
+/* winner (top of the table) */
+.styled-table tr.winner{background:linear-gradient(90deg, rgba(246,200,95,0.28), rgba(246,200,95,0.18));border-left:4px solid var(--gold);color:#071216;box-shadow:0 8px 28px rgba(246,200,95,0.06)}
+.styled-table tr.winner td{color:#071216}
+.styled-table tr.winner th{color:#071216}
+.loader{height:64px;display:grid;place-items:center}
+.skeleton{height:12px;background:linear-gradient(90deg,#0f1724 0%, rgba(255,255,255,0.03) 50%, #0f1724 100%);background-size:200% 100%;animation: shimmer 1.4s linear infinite;border-radius:6px}
+@keyframes shimmer{from{background-position:200% 0}to{background-position:-200% 0}}
+.fade-in{animation:fadeIn .45s ease both}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.site-footer{padding:18px 0;color:var(--muted);text-align:center;font-size:0.9rem}
+
+/* small helpers */
+.muted{color:var(--muted)}
+
+/* responsive */
+@media (max-width:760px){
+  .header-inner{padding:8px}
+  .search{min-width:120px}
+  .hero-title{font-size:1.15rem}
+}

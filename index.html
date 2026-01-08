@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>eFootball League</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">eFootball <span class="accent">League</span></div>
+      <nav class="nav">
+        <a href="#players">Players</a>
+        <a href="#points">Points</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1 class="hero-title hero-animate">KCL eFootball League</h1>
+  </section>
+
+  <section class="card" id="winnerCard" style="display:none">
+    <h2 style="text-align:center">
+      🏆 Champion: <span id="winnerName" class="accent"></span>
+    </h2>
+  </section>
+
+  <main class="container">
+    <section id="players" class="card">
+      <div class="card-head">
+        <h2>Clubs & Players</h2>
+        <div class="controls">
+          <input id="playersSearch" class="search" placeholder="Search players or club...">
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="loader" data-target="playersTable"></div>
+        <div class="table-wrap">
+          <table id="playersTable" class="styled-table" aria-label="Players table"></table>
+        </div>
+      </div>
+    </section>
+
+    <section id="points" class="card">
+      <div class="card-head">
+        <h2>Points Table</h2>
+        <div class="controls">
+          <input id="pointsSearch" class="search" placeholder="Search club...">
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="loader" data-target="pointsTable"></div>
+        <div class="table-wrap">
+          <table id="pointsTable" class="styled-table" aria-label="Points table"></table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">© <span id="year"></span> eFootball League — Data provided via API</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
